@@ -398,8 +398,8 @@ static inline BOOL checkForOpenDatabaseFatal(BOOL fatal)
             *stop = YES;
             return;
         }
-        if (keyed) [keyedInstances setValue:instance forKey:[instance primaryKey]];
-        else [instances addObject:instance];
+        if (keyed && instance) [keyedInstances setValue:instance forKey:[instance primaryKey]];
+        else if (instance) [instances addObject:instance];
     };
     
     if (existingResultSet) {
